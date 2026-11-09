@@ -208,6 +208,18 @@ private inherited sharing class UAF_Core_Test {
     }
 
     @IsTest
+    static void factorySkipsDispatchForBypassAllUser() {
+        registerRecordingDispatcher();
+        UAF_BypassManager.bypassAllOverride = true;
+
+        Test.startTest();
+        UAF_TriggerFactory.dispatch(Account.SObjectType, buildParams(UAF_TriggerParameters.TriggerEvent.AFTER_INSERT, buildAccounts(200)));
+        Test.stopTest();
+
+        Assert.isTrue(callLog.isEmpty(), 'Dispatcher must not run for a user with UAF_Bypass_All');
+    }
+
+    @IsTest
     static void factoryBypassDoesNotRequireDispatcher() {
         // No override and no ContactTriggerDispatcher class: bypass must short-circuit before lookup.
         UAF_BypassManager.bypassObject('Contact');

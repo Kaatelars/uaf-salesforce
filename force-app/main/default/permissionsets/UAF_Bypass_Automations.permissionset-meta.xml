@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>UAF_Bypass_All</name>
+    </customPermissions>
+    <description>UAF: assign to integration or data-load users (Data Loader, SFDMU, ETL) to bypass every UAF-governed trigger and Flow. Remove the assignment once the load finishes.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>UAF Bypass Automations</label>
+</PermissionSet>
