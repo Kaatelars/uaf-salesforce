@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>UAF reference implementation: access to the Account fields maintained by the reference trigger handlers and guarded flow.</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.UAF_Flow_Run_Count__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.UAF_Insert_Stamp__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.UAF_Name_Change_Count__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>UAF Reference Implementation</label>
+</PermissionSet>

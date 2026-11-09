@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>UAF_Guard</name>
+        <label>UAF Guard</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <actionName>UAF_FlowGuard</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Should_Run</targetReference>
+        </connector>
+        <inputParameters>
+            <name>flowApiName</name>
+            <value>
+                <stringValue>UAF_Account_Guarded_Flow</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>68.0</apiVersion>
+    <decisions>
+        <name>Should_Run</name>
+        <label>Should Run?</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>Abort</defaultConnectorLabel>
+        <rules>
+            <name>Allowed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>UAF_Guard.shouldRun</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Increment_Run_Count</targetReference>
+            </connector>
+            <label>Allowed</label>
+        </rules>
+    </decisions>
+    <description>UAF reference implementation. After-save flow on Account (create and update). Its first step calls UAF_FlowGuard; it only continues (incrementing UAF_Flow_Run_Count__c) when the guard allows it, i.e. the flow/object is not bypassed in UAF_BypassManager and it has not already run for the record in the current transaction.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>NextRunCount</name>
+        <dataType>Number</dataType>
+        <expression>BLANKVALUE({!$Record.UAF_Flow_Run_Count__c}, 0) + 1</expression>
+        <scale>0</scale>
+    </formulas>
+    <interviewLabel>UAF Account Guarded Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>UAF Account Guarded Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Increment_Run_Count</name>
+        <label>Increment Run Count</label>
+        <locationX>44</locationX>
+        <locationY>539</locationY>
+        <inputAssignments>
+            <field>UAF_Flow_Run_Count__c</field>
+            <value>
+                <elementReference>NextRunCount</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>UAF_Guard</targetReference>
+        </connector>
+        <object>Account</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

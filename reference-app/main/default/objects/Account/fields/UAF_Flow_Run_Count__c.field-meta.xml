@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UAF_Flow_Run_Count__c</fullName>
+    <description>UAF reference implementation. Incremented by UAF_Account_Guarded_Flow each time UAF_FlowGuard allows it to run.</description>
+    <externalId>false</externalId>
+    <label>UAF Flow Run Count</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

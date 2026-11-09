@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UAF_Name_Change_Count__c</fullName>
+    <description>UAF reference implementation. Incremented by AccountAfterUpdateHandler each time the Account Name changes.</description>
+    <externalId>false</externalId>
+    <label>UAF Name Change Count</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

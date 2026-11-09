@@ -3,6 +3,10 @@
     {
       "path": "force-app",
       "default": true
+    },
+    {
+      "path": "reference-app",
+      "default": false
     }
   ],
   "name": "uaf-framework",

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UAF_Insert_Stamp__c</fullName>
+    <description>UAF reference implementation. Stamped by AccountAfterInsertHandler with the output of UAF_Test_Echo_Flow.</description>
+    <externalId>false</externalId>
+    <label>UAF Insert Stamp</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
